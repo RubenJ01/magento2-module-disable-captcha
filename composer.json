@@ -6,7 +6,8 @@
     "MIT"
   ],
   "require": {
-    "php": ">=8.1"
+    "php": ">=8.1",
+    "magento/framework": ">=103.0 <104.0"
   },
   "autoload": {
     "files": [

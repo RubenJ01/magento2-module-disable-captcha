@@ -2,9 +2,20 @@
 
 A small Magento 2 module to toggle all captcha and reCAPTCHA settings with CLI commands.
 
+## Requirements
+
+- PHP `>=8.1`
+- Magento Open Source / Adobe Commerce `2.4.4` up to `2.4.8`
+
 ## Installation
 
-Enable the module and run setup:
+Install via Composer:
+
+```bash
+composer require rjds/magento2-module-captcha-disable
+```
+
+Then enable the module and run setup:
 
 ```bash
 bin/magento module:enable RJDS_DisableCaptcha
