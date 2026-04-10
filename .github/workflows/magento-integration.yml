@@ -86,7 +86,12 @@ jobs:
           tools: composer:${{ matrix.composer-version }}
 
       - name: Configure Composer for CI
-        run: composer config --global audit.block-insecure false || true
+        run: |
+          if composer config --list --global | grep -q 'audit.block-insecure'; then
+            composer config --global audit.block-insecure false
+          else
+            echo "Skipping audit.block-insecure: unsupported by this Composer version."
+          fi
 
       - name: Configure Composer authentication for repo.magento.com
         env:
