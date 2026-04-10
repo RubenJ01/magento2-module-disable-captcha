@@ -15,6 +15,24 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class CaptchaCommandsTest extends TestCase
 {
+    public function testDisableCommandIncludesDisableTwoFactorAuthOption(): void
+    {
+        $objectManager = Bootstrap::getObjectManager();
+        /** @var DisableCommand $disableCommand */
+        $disableCommand = $objectManager->get(DisableCommand::class);
+
+        $this->assertNotNull($disableCommand->getDefinition()->getOption('disable-2fa-module'));
+    }
+
+    public function testEnableCommandIncludesEnableTwoFactorAuthOption(): void
+    {
+        $objectManager = Bootstrap::getObjectManager();
+        /** @var EnableCommand $enableCommand */
+        $enableCommand = $objectManager->get(EnableCommand::class);
+
+        $this->assertNotNull($enableCommand->getDefinition()->getOption('enable-2fa-module'));
+    }
+
     public function testDisableAndEnableCommandsUpdateConfig(): void
     {
         $objectManager = Bootstrap::getObjectManager();
@@ -32,7 +50,7 @@ class CaptchaCommandsTest extends TestCase
         /** @var ResourceConnection $resource */
         $resource = $objectManager->get(ResourceConnection::class);
         $this->assertSame('0', $this->getDefaultConfigValue($resource, 'customer/captcha/enable'));
-        $this->assertSame('0', $this->getDefaultConfigValue($resource, 'recaptcha_frontend/type_for/customer_login'));
+        $this->assertSame('', $this->getDefaultConfigValue($resource, 'recaptcha_frontend/type_for/customer_login'));
 
         /** @var EnableCommand $enableCommand */
         $enableCommand = $objectManager->get(EnableCommand::class);
@@ -65,7 +83,7 @@ class CaptchaCommandsTest extends TestCase
             return '';
         }
 
-        return $value;
+        return (string)$value;
     }
 }
 
