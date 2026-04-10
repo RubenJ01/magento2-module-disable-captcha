@@ -14,30 +14,12 @@ use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class EnableCommand extends Command
 {
-    /**
-     * @var CaptchaConfigManager
-     */
-    private $captchaConfigManager;
-
-    /**
-     * @var CacheManager
-     */
-    private $cacheManager;
-
-    /**
-     * @var State
-     */
-    private $appState;
-
     public function __construct(
-        CaptchaConfigManager $captchaConfigManager,
-        CacheManager $cacheManager,
-        State $appState
+        private CaptchaConfigManager $captchaConfigManager,
+        private CacheManager $cacheManager,
+        private State $appState
     ) {
         parent::__construct();
-        $this->captchaConfigManager = $captchaConfigManager;
-        $this->cacheManager = $cacheManager;
-        $this->appState = $appState;
     }
 
     protected function configure(): void

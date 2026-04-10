@@ -10,14 +10,9 @@ use Magento\Store\Model\ScopeInterface;
 
 class SafeUiConfigResolver
 {
-    /**
-     * @var ScopeConfigInterface
-     */
-    private $scopeConfig;
-
-    public function __construct(ScopeConfigInterface $scopeConfig)
-    {
-        $this->scopeConfig = $scopeConfig;
+    public function __construct(
+        private ScopeConfigInterface $scopeConfig
+    ) {
     }
 
     /**

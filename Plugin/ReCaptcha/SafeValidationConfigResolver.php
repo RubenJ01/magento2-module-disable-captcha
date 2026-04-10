@@ -12,22 +12,10 @@ use RJDS\DisableCaptcha\Model\ReCaptcha\NullValidationConfig;
 
 class SafeValidationConfigResolver
 {
-    /**
-     * @var ScopeConfigInterface
-     */
-    private $scopeConfig;
-
-    /**
-     * @var NullValidationConfig
-     */
-    private $nullValidationConfig;
-
     public function __construct(
-        ScopeConfigInterface $scopeConfig,
-        NullValidationConfig $nullValidationConfig
+        private ScopeConfigInterface $scopeConfig,
+        private NullValidationConfig $nullValidationConfig
     ) {
-        $this->scopeConfig = $scopeConfig;
-        $this->nullValidationConfig = $nullValidationConfig;
     }
 
     /**

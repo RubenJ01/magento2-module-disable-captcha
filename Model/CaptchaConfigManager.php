@@ -62,14 +62,9 @@ class CaptchaConfigManager
         'recaptcha_backend/type_for/user_forgot_password' => 'recaptcha',
     ];
 
-    /**
-     * @var WriterInterface
-     */
-    private $configWriter;
-
-    public function __construct(WriterInterface $configWriter)
-    {
-        $this->configWriter = $configWriter;
+    public function __construct(
+        private WriterInterface $configWriter
+    ) {
     }
 
     public function disable(): void
